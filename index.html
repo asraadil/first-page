@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        
+        <!-- MetaTags -->
+        <meta charset="UTF-8">
+
+        <!-- Lato font-family -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+
+        <!-- Ionic icons -->
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+
+        <!-- Main styling file -->
+        <link type="text/css" rel="stylesheet" href="style.css">
+        
+        <!-- Title of the page -->
+        <title>Form</title>
+
+    </head>
+
+    <body>
+	
+	
+<button class="tablink" onclick="openPage('Home', this, 'light blue')">Home</button>
+<button class="tablink" onclick="openPage('News', this, 'sea green')" id="defaultOpen">News</button>
+<button class="tablink" onclick="openPage('Dashboard', this, 'olive')">Dashboard</button>
+<button class="tablink" onclick="openPage('About', this, 'peach')">About</button>
+
+<div id="Home" class="tabcontent">
+  <h3>Home</h3>
+  <p>Home is where the heart is..</p>
+</div>
+
+<div id="News" class="tabcontent">
+  <h3>News</h3>
+  <p>Some news this fine day!</p>
+</div>
+
+<div id="Dashboard" class="tabcontent">
+  <h3>Dashboard</h3>
+  <p>Get in touch, or swing by for a cup of coffee.</p>
+</div>
+
+<div id="About" class="tabcontent">
+  <h3>About</h3>
+  <p>Who we are and what we do.</p>
+</div>
+
+
+<form class="example" action="action_page.php">
+  <input type="text" placeholder="Search.." name="search">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+
+
+
+
+	
+<header>
+	<h1>Contact us</h1>
+</header>
+
+<div id="form">
+
+<div class="fish" id="fish"></div>
+<div class="fish" id="fish2"></div>
+
+<form id="waterform" method="post">
+
+<div class="formgroup" id="name-form">
+    <label for="name">Your name*</label>
+    <input type="text" id="name" name="name" />
+</div>
+
+<div class="formgroup" id="email-form">
+    <label for="email">Your e-mail*</label>
+    <input type="email" id="email" name="email" />
+</div>
+
+<div class="formgroup" id="message-form">
+    <label for="message">Your message</label>
+    <textarea id="message" name="message"></textarea>
+</div>
+
+	<input type="submit" value="Send your message!" />
+</form>
+</div>
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+$('document').ready(function(){
+	$('input[type="text"], input[type="email"], textarea').focus(function(){
+		var background = $(this).attr('id');
+		$('#' + background + '-form').addClass('formgroup-active');
+		$('#' + background + '-form').removeClass('formgroup-error');
+	});
+	$('input[type="text"], input[type="email"], textarea').blur(function(){
+		var background = $(this).attr('id');
+		$('#' + background + '-form').removeClass('formgroup-active');
+	});
+
+function errorfield(field){
+	$(field).addClass('formgroup-error');
+	console.log(field);	
+}
+
+$("#waterform").submit(function() {
+	var stopsubmit = false;
+
+if($('#name').val() == "") {
+	errorfield('#name-form');
+	stopsubmit=true;
+}
+if($('#email').val() == "") {
+	errorfield('#email-form');
+	stopsubmit=true;
+}
+  if(stopsubmit) return false;
+});
+		
+});
+</script>
+
+
+
+    </body>
+</html>
